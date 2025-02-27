@@ -20,9 +20,10 @@
             color: white !important;
             font-weight: bold;
         }
-        dd
+        
+        /* Hero Section */
         .hero {
-            background: url('./Main.jpg') center/cover no-repeat;
+            background: url('Main.jpg') center/cover no-repeat;
             color: white;
             text-align: center;
             padding: 150px 20px;
@@ -33,11 +34,14 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* ✅ Fix: Prevents blocking clicks */
         }
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* ✅ Fix: Ensures text is clickable */
         }
+
+        /* Sections */
         .about-section, .offer-section {
             padding: 60px;
             text-align: center;
@@ -50,6 +54,8 @@
             color: #ff4081;
             font-weight: bold;
         }
+
+        /* Buttons */
         .btn-custom {
             background-color: #ff4081;
             color: white;
@@ -62,6 +68,8 @@
         .btn-custom:hover {
             background-color: #d81b60;
         }
+
+        /* Footer */
         footer {
             background: #ff4081;
             color: white;
