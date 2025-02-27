@@ -20,7 +20,7 @@
             color: white !important;
             font-weight: bold;
         }
-        
+
         /* Hero Section */
         .hero {
             background: url('Main.jpg') center/cover no-repeat;
@@ -34,15 +34,14 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.5);
-            pointer-events: none; /* ✅ Fix: Prevents blocking clicks */
         }
         .hero-content {
             position: relative;
-            z-index: 1; /* ✅ Fix: Ensures text is clickable */
+            z-index: 1;
         }
 
-        /* Sections */
-        .about-section, .offer-section {
+        /* Offer Section */
+        .offer-section {
             padding: 60px;
             text-align: center;
             background: white;
@@ -50,23 +49,64 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 40px;
         }
-        .about-section h2, .offer-section h2 {
+        .offer-section h2 {
             color: #ff4081;
             font-weight: bold;
         }
 
-        /* Buttons */
-        .btn-custom {
+        /* About Us Section */
+        .about-section {
+            padding: 60px;
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            display: none;
+        }
+        .about-section h2 {
+            color: #ff4081;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 50px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-section h2 {
+            color: #ff4081;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .submit-btn {
             background-color: #ff4081;
             color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 12px;
             font-weight: bold;
-            text-decoration: none;
+            border-radius: 8px;
             transition: 0.3s;
+            width: 100%;
         }
-        .btn-custom:hover {
+        .submit-btn:hover {
             background-color: #d81b60;
+        }
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1050;
         }
 
         /* Footer */
@@ -85,6 +125,11 @@
             aboutSection.style.display = "block";
             aboutSection.scrollIntoView({ behavior: "smooth" });
         }
+
+        function showToast() {
+            var toast = new bootstrap.Toast(document.getElementById("submitToast"));
+            toast.show();
+        }
     </script>
 </head>
 <body>
@@ -100,11 +145,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="toggleAbout()">About Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -112,24 +160,53 @@
             <p class="lead">Join us in creating opportunities for women to thrive and succeed.</p>
         </div>
     </section>
-    
+
     <!-- Offer Section -->
     <div class="container offer-section">
         <h2>Exclusive Offers for Women</h2>
         <p>Special services, mentorship programs, and networking opportunities designed to uplift and support women.</p>
         <a href="#" class="btn btn-custom mt-3">Learn More</a>
     </div>
-    
+
     <!-- About Us Section -->
-    <section id="about" class="container about-section" style="display: none;">
+    <section id="about" class="container about-section">
         <h2>About Ammayi Service</h2>
-        <p>Ammayi Service is dedicated to helping women who have not had relationships, providing them with guidance and support. Managed by Shahid, our platform focuses on empowering women and ensuring their well-being.</p>
-        <p>Our mission is to uplift women by offering emotional support, career opportunities, mentorship, and financial aid. We believe in fostering confidence and independence for every woman.</p>
+        <p>Ammayi Service is dedicated to helping women by providing guidance and support. Managed by Shahid, our platform focuses on empowering women and ensuring their well-being.</p>
+        <p>Our mission is to uplift women by offering emotional support, career opportunities, mentorship, and financial aid.</p>
     </section>
-    
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="container contact-section">
+        <h2>Contact Us</h2>
+        <p class="text-center">📧 Email: <a href="mailto:shahid@gmail.com">shahid@gmail.com</a></p>
+        <form onsubmit="event.preventDefault(); showToast();">
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Type your message" required></textarea>
+            </div>
+            <button type="submit" class="btn submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div class="toast align-items-center text-white bg-success border-0" id="submitToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">✅ Message Submitted Successfully!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Ammayi Service. All Rights Reserved.</p>
-    </footer>
+    <footer>&copy; 2025 Ammayi Service. All Rights Reserved.</footer>
 </body>
 </html>
